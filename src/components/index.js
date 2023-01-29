@@ -1,4 +1,4 @@
-import ArtistCard from "./ArtistCard"
+import MusicianCard from "./MusicianCard"
 import Error from "./Error"
 import HeaderDetails from "./HeaderDetails"
 import Loader from "./Loader"
@@ -8,9 +8,10 @@ import SideBar from "./SideBar"
 import TopPlaylist from "./TopPlaylist"
 import TrackBar from "./TrackBar"
 import TrackCard from "./TrackCard"
+import RelatedHits from "./RelatedHits"
 
 export{
-    ArtistCard,
+    MusicianCard,
     Error,
     HeaderDetails,
     Loader,
@@ -20,4 +21,5 @@ export{
     TopPlaylist,
     TrackBar,
     TrackCard,
+    RelatedHits
 }

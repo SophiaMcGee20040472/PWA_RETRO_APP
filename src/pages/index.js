@@ -1,5 +1,5 @@
 import Discover from "./DiscoverMusic";
-import TopMusicians from "./TopMusicans";
+import TopMusicians from "./TopMusicians";
 import AroundMe from "./AroundMe";
 import ArtistInfo from "./ArtistInfo";
 import SongInfo from "./SongInfo";

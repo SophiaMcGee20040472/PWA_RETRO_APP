@@ -13,6 +13,7 @@ export const ShazamAPI = createApi({
   endpoints: (builder) => ({
     getTopHits: builder.query({ query: () => 'v1/charts/world' }),
     getTracksByGenre: builder.query({ query: (genre) => `v1/charts/genre-world?genre_code=${genre}` }),
+    getMusicianDetails: builder.query({ query: (artistId) => `v2/artists/details?artist_id=${artistId}` }),
 
   }),
 });
@@ -20,6 +21,7 @@ export const ShazamAPI = createApi({
 export const {
   useGetTopHitsQuery,
   useGetTracksByGenreQuery,
+  useGetMusicianDetailsQuery,
 
 } = ShazamAPI;
 

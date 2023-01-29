@@ -17,22 +17,22 @@ const DiscoverMusic = () => {
   if (isFetching) return <Loader title="Currently Loading Tracks" />;
 
   if (error) return <Error />;
-  console.log(data, "HELLO");
+  console.log(data, "discovering pop");
   return (
     
     <div className="flex flex-col">
           <SearchBar/>
     <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
-      <h2 className="font-bold text-3xl text-white text-left">Discover {GenreMenuName}</h2>
+      <h2 className="font-bold text-3xl px-10 text-orange text-left">Discover {GenreMenuName}</h2>
       <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || 'pop'}
-          className=" from-purple bg-black bg-gradient-to-br text-white p-1 text-l rounded-sm outline-none sm:mt-8 mt-6"
+          className=" from-purple bg-black bg-gradient-to-br text-white p-3 text-l rounded-sm outline-none "
         >
           {musicGenres.map((musicGenres) => <option key={musicGenres.value} value={musicGenres.value}>{musicGenres.title}</option>)}
         </select>
       </div>
-        <div className="flex flex-wrap-reverse sm:justify-center justify-center gap-6 mt-9">
+        <div className="flex flex-wrap-reverse sm:justify-center justify-center gap-8 mt-1">
           {data?.map((track, i) => (
             <TrackCard 
             key={track.key} 
