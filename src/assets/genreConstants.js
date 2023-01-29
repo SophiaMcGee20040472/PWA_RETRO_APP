@@ -1,11 +1,9 @@
-import {
-  BsRecordCircle,
-  HiHomeModern,
-  RiBearSmileLine,
-  SiMusicbrainz,
-} from "react-icons/hi";
+import {RiBearSmileLine} from "react-icons/ri"
+import {SiMusicbrainz} from "react-icons/si"
+import {BsRecordCircle} from "react-icons/bs"
+import {HiHomeModern} from "react-icons/all";
 
-export const genres = [
+export const musicGenres = [
   { title: "Pop", value: "POP" },
   { title: "Alternative", value: "ALTERNATIVE" },
   { title: "Rock", value: "ROCK" },

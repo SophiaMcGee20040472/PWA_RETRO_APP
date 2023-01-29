@@ -1,7 +1,5 @@
-import record_loader from './record_loader.svg'
-import Logo from './Logo1.svg'
+import record_loader from "./record_loader.svg";
+import loader from "./loader.svg";
+import Logo from "./Logo1.svg";
 
-export{
-record_loader,
-Logo,
-};
+export { loader, record_loader, Logo };
