@@ -6,7 +6,7 @@ import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
 const TopMusician = () => {
   const { data, isFetching, error } = useGetTopHitsQuery();
 
-  console.log(data, "musician")
+  console.log(data, "musician");
 
   if (isFetching) return <Loader title="Loading artists..." />;
 
@@ -14,12 +14,15 @@ const TopMusician = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-3xl text-orange text-left mt-5 mb-10">
+      <h2 className="font-bold text-3xl text-orange text-left mt-4 mb-8">
         Top Artists
       </h2>
+
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
-      {data?.map((track) => <MusicianCard key={track.key} track={track} />)}
-    </div>
+        {data?.map((track) => (
+          <MusicianCard key={track.key} track={track} />
+        ))}
+      </div>
     </div>
   );
 };

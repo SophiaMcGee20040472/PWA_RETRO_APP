@@ -3,24 +3,26 @@ import { musicGenres } from "../assets/genreConstants";
 import { TrackCard, Error, Loader, SearchBar } from "../components";
 import { selectGenreListId } from "../redux/features/playerChoices";
 import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
+import { useGetTracksByGenreQuery } from "../redux/service/ShazamAPI";
 import { useDispatch, useSelector } from 'react-redux';
+import { RiBearSmileLine } from "react-icons/ri";
 
 
 const DiscoverMusic = () => {
   const dispatch= useDispatch();
   const { genreListId } = useSelector((state) => state.player);
   const { activeTrack, currentlyPlaying } = useSelector((state) => state.player);
-  const GenreMenuName = "Pop";
-  const { data, isFetching, error } = useGetTopHitsQuery();
+  const GenreMenuName = musicGenres.find(({ value }) => value === genreListId)?.title;;
+  const { data, isFetching, error } = useGetTracksByGenreQuery(genreListId || 'Pop');
   const testArray = [1, 2, 3, 4, 5];
 
   if (isFetching) return <Loader title="Currently Loading Tracks" />;
-
-  if (error) return <Error />;
+//  if (error) return <Error />;
+ 
   console.log(data, "discovering pop");
   return (
     
-    <div className="flex flex-col">
+     <div className="flex flex-col">
           <SearchBar/>
     <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
       <h2 className="font-bold text-3xl px-10 text-orange text-left">Discover {GenreMenuName}</h2>
@@ -48,4 +50,3 @@ const DiscoverMusic = () => {
 };
 
 export default DiscoverMusic;
-

@@ -34,7 +34,7 @@ const SideBar = () => (
               class="flex flex-row items-center h-10 px-2 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
             >
               <RiBearSmileLine aria-hidden="true" className="w-6 h-6 ml-1" />
-              <span class="ml-2"><a href ="/around-you">Around You</a></span>
+              <span class="ml-3"><a href ="/around-you">Around You</a></span>
             </a>
           </li>
           <li class="my-px"></li>

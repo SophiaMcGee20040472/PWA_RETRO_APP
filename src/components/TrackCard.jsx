@@ -16,8 +16,10 @@ const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
   };
 
   return (
-    <div class=" bg-black border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div class="flex justify-start px-6 pt-8">
+    <div   className="flex flex-col w-[200px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <div class="flex justify-end px-1 pt-1">
+        <div className={`absolute inset-0 justify-start items-center bg-black bg-opacity-50 group-hover:flex ${activeTrack?.title === track.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
+        </div>
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
             activeTrack?.title === track.title
@@ -47,7 +49,7 @@ const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
             className="text-orange"
             to={
               track.artists
-                ? `/tracks/${track?.artists[0]?.sophiaid}`
+                ? `/tracks/${track?.artists[0]?.adamid}`
                 : "/top-artists"
             }
           >

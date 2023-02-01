@@ -27,7 +27,7 @@ return(
             <Route path="/top-charts" element={<TopHits />} />
             <Route path="/around-you" element={<AroundMe />} />
             <Route path="/artists/:id" element={<ArtistInfo />} />
-            <Route path="/songs/:songid" element={<SongInfo />} />
+            <Route path="/tracks/:trackid" element={<SongInfo />} />
             <Route path="/search/:searchTerm" element={<Search />} />
           </Routes>
         </div>

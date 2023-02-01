@@ -1,7 +1,7 @@
 import React from 'react';
-
+import {BsPlayCircleFill} from "react-icons/bs"
 const PausePlay = () => (
-  <div>Pause and Play</div>
+  <BsPlayCircleFill aria-hidden="true" className="w-6 h-6 ml-1" />
 );
 
 export default PausePlay;
