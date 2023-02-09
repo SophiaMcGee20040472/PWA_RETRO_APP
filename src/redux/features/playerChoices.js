@@ -20,7 +20,7 @@ const initialState = {
         state.currentTracks = action.payload.data.tracks.hits;
     } else if (action.payload?.data?.properties){
         state.currentTracks = action.payload?.data?.tracks;
-    }else {
+    } else {
         state.currentTracks = action.payload.data;
     }
         state.currentIndex = action.payload.i;
@@ -45,7 +45,7 @@ const initialState = {
         if (state.currentTracks[action.payload]?.track) {
           state.activeTrack = state.currentTracks[action.payload]?.track;
         } else {
-          state.activeSong = state.currentTracks[action.payload];
+          state.activeTrack = state.currentTracks[action.payload];
         }
   
         state.currentIndex = action.payload;

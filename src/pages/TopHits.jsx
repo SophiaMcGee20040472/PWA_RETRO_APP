@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 
 import { Error, Loader, TrackCard } from "../components";
 import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
-import Search from "./Search";
-
+import Searchbar from "../components/SearchBar";
 const TopHits = () => {
   const { data, isFetching, error } = useGetTopHitsQuery();
   const { activeTrack, currentlyPlaying } = useSelector(
@@ -12,11 +11,13 @@ const TopHits = () => {
   );
 
   if (isFetching) return <Loader title="Loading Top Charts" />;
-
+// Error handling to make sure the app renders
   if (error) return <Error />;
 
   return (
+
     <div className="flex flex-col">
+      <Searchbar/>
       <h2 className="font-bold text-3xl text-orange text-left mt-4 mb-8">
         Discover Top Charts
       </h2>
@@ -33,6 +34,8 @@ const TopHits = () => {
         ))}
       </div>
     </div>
+
+
   );
 };
 

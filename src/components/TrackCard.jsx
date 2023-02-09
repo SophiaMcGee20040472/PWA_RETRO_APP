@@ -37,7 +37,7 @@ const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
         </div>
         <div class="flex flex-col items-start px-1 pb-2 w-40 text-white font-semibold">
           <img
-            alt="song_img"
+            alt="track_img"
             src={track.images?.coverart}
             className="w-full h-full rounded-lg"
           />

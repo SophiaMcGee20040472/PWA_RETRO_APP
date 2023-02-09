@@ -13,7 +13,7 @@ const SongInfo = () => {
     const { data, isFetching: isFetchingRelatedHits, error } =useGetTrackRelatedQuery({ trackid });
     const { data: trackData, isFetching: isFetchingSongInfo } = useGetTrackDetailsQuery({ trackid });
   
-    if (isFetchingSongInfo && isFetchingRelatedHits) return <Loader title="Searching song details" />;
+    if (isFetchingSongInfo && isFetchingRelatedHits) return <Loader title="Searching Song details" />;
 
     console.log(trackData);
     const handleClickPause = () => {

@@ -6,6 +6,11 @@ import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
 import { useGetTracksByGenreQuery } from "../redux/service/ShazamAPI";
 import { useDispatch, useSelector } from 'react-redux';
 import { RiBearSmileLine } from "react-icons/ri";
+import VolumeOptions from "../components/Player/VolumeOptions";
+import Song from "../components/Player/Song";
+import PlayerTemplate from "../components/Player/PlayerTemplate";
+import Navigation from "../components/Player/Navigation";
+
 
 
 const DiscoverMusic = () => {
@@ -16,6 +21,7 @@ const DiscoverMusic = () => {
   const { data, isFetching, error } = useGetTracksByGenreQuery(genreListId || 'Pop');
   const testArray = [1, 2, 3, 4, 5];
 
+
   if (isFetching) return <Loader title="Currently Loading Tracks" />;
 //  if (error) return <Error />;
  
@@ -25,7 +31,7 @@ const DiscoverMusic = () => {
      <div className="flex flex-col">
           <SearchBar/>
     <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10">
-      <h2 className="font-bold text-3xl px-10 text-orange text-left">Discover {GenreMenuName}</h2>
+      <h2 className="font-bold text-3xl text-orange text-left mt-1 mb-8 py-2 px-3">Discover {GenreMenuName}</h2>
       <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || 'pop'}
@@ -34,7 +40,7 @@ const DiscoverMusic = () => {
           {musicGenres.map((musicGenres) => <option key={musicGenres.value} value={musicGenres.value}>{musicGenres.title}</option>)}
         </select>
       </div>
-        <div className="flex flex-wrap-reverse sm:justify-center justify-center gap-8 mt-1">
+        <div className="flex flex-wrap sm:justify-start justify-center gap-8 px-1">
           {data?.map((track, i) => (
             <TrackCard 
             key={track.key} 
@@ -45,6 +51,8 @@ const DiscoverMusic = () => {
             track={track} />
           ))}
         </div>
+        <Navigation/>
+
       </div>
   );
 };
