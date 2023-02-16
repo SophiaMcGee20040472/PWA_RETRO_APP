@@ -20,7 +20,7 @@ const SideBar = () => (
         <li class="my-px">
             <a
               href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-orange hover:text-black"
             >
           <HiHomeModern aria-hidden="true" className="w-6 h-6 ml-1" />
               <span class="ml-3"><a href="/">Discover</a></span>
@@ -31,7 +31,7 @@ const SideBar = () => (
           <li class="my-px">
             <a
               href="#"
-              class="flex flex-row items-center h-10 px-2 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              class="flex flex-row items-center h-10 px-2 rounded-lg text-gray-300  hover:bg-orange hover:text-black"
             >
               <RiBearSmileLine aria-hidden="true" className="w-6 h-6 ml-1" />
               <span class="ml-3"><a href ="/around-you">Around You</a></span>
@@ -41,7 +41,7 @@ const SideBar = () => (
           <li class="my-px">
             <a
               href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-orange hover:text-black"
             >
          <SiMusicbrainz aria-hidden="true" className="w-6 h-6" />
               <span class="ml-3"><a href="/top-artists">Top Artists</a></span>
@@ -51,7 +51,7 @@ const SideBar = () => (
           <li class="my-px">
             <a
               href="#"
-              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              class="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-orange hover:text-black"
             >
             <BsRecordCircle aria-hidden="true" className="w-6 h-6" />
               <span class="ml-3"><a href="/top-charts">Top Charts</a></span>

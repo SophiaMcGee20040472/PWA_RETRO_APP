@@ -11,6 +11,7 @@ export const ShazamAPI = createApi({
     },
   }),
   endpoints: (builder) => ({
+    getTracksByLocation: builder.query({ query: (location) => `v1/charts/country?country_code=${location}` }),
     getTopHits: builder.query({ query: () => 'v1/charts/world' }),
     getTrackDetails: builder.query({ query: ({ trackid }) => `v1/tracks/details?track_id=${trackid}` }),
     getTrackRelated: builder.query({ query: ({ trackid }) => `v1/tracks/related?track_id=${trackid}` }),
@@ -21,6 +22,7 @@ export const ShazamAPI = createApi({
 });
 
 export const {
+  useGetTracksByLocationQuery,
   useGetTopHitsQuery,
   useGetTracksBySearchQuery,
   useGetTracksByGenreQuery,

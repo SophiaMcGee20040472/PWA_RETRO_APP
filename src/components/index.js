@@ -5,21 +5,23 @@ import Loader from "./Loader"
 import PausePlay from "./PausePlay"
 import SearchBar from "./SearchBar"
 import SideBar from "./SideBar"
-import TopPlaylist from "./TopPlaylist"
 import TrackBar from "./TrackBar"
 import TrackCard from "./TrackCard"
 import RelatedHits from "./RelatedHits"
+import Player from "./Player"
+import SwipePlay from "./SwipePlay"
 
 export{
     MusicianCard,
     Error,
     HeaderDetails,
     Loader,
+    Player,
     PausePlay,
     SearchBar,
     SideBar,
-    TopPlaylist,
     TrackBar,
     TrackCard,
-    RelatedHits
+    RelatedHits,
+    SwipePlay
 }

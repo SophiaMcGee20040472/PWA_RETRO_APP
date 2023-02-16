@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect } from 'react';
 
-const PlayerTemplate = (/* { activeTrack, currentlyPlaying, volumeOption, seekingTime, onEnd, onUpdateTime, onDataLoaded, replay } */) => {
-    return<div>hello</div>
- /*  const ref = useRef(null);
+const PlayerTemplate = ({ activeTrack, currentlyPlaying, volumeOption, seekingTime, onEnd, onUpdateTime, onDataLoaded, replay } ) => {
+   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
     if (currentlyPlaying) {
@@ -17,7 +16,7 @@ const PlayerTemplate = (/* { activeTrack, currentlyPlaying, volumeOption, seekin
     ref.current.volumeOption = volumeOption;
   }, [volumeOption]);
   useEffect(() => { 
-    ref.current.currentTime = seekingTime;
+    ref.current.current = seekingTime;
   }, [seekingTime]);
 
   return (
@@ -30,6 +29,6 @@ const PlayerTemplate = (/* { activeTrack, currentlyPlaying, volumeOption, seekin
       onDataLoaded={onDataLoaded}
     />
   );
-}; */
-}
+}; 
+
 export default PlayerTemplate;

@@ -14,7 +14,7 @@ const initialState = {
     initialState,
     reducers:{
         setActiveTrack:(state,action)=>{
-         state.activeTracks =action.payload.track;
+         state.activeTrack =action.payload.track;
 
     if (action.payload?.data?.tracks?.hits) {
         state.currentTracks = action.payload.data.tracks.hits;

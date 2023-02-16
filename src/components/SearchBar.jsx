@@ -23,11 +23,11 @@ const Searchbar = () => {
         Search your Favourite Music
       </label>
       <div className="flex flex-row justify-start items-left">
-        <MdManageSearch aria-hidden="true" className="w-8 h-10 mt-6" />
+        <MdManageSearch aria-hidden="true" className="w-8 h-10 mt-3" />
         <input
           name="search-field"
           id="search-field"
-          className="flex-1 bg-transparent border-none placeholder-white outline-none text-base text-white p-2 px-4 py-8"
+          className="flex-1 bg-transparent border-none placeholder-white outline-none text-base text-white p-2 px-3 py-5"
           placeholder="Search"
           type="search"
           value={searchMusic}

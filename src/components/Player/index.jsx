@@ -6,20 +6,23 @@ import { PauseandPlay, nextTrack, prevTrack } from '../../redux/features/playerC
 import PlayerTemplate from './PlayerTemplate';
 import Song from './Song';
 import VolumeOptions from './VolumeOptions';
+import SeekingBar from './SeekingBar';
+import Navigation from './Navigation';
 
 
-const MusicPlayer = () => {
+const Player = () => {
   const { activeTrack, currentTracks, currentIndex, currentlyActive, currentlyPlaying } = useSelector((state) => state.player);
-  const [duration, setDuration] = useState(0);
-  const [seekingTime, setSeekingTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
   const [volumeOption, setVolumeOption] = useState(0.3);
   const [replay, setReplay] = useState(false);
   const [shuffleTrack, setShuffleTrack] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [seekingTime, setSeekingTime] = useState(0);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (currentTracks.length) dispatch(pausePlay(true));
+    if (currentTracks.length) dispatch(PauseandPlay(true));
   }, [currentIndex]);
 
   const handlePausePlay = () => {
@@ -54,9 +57,9 @@ const MusicPlayer = () => {
 
   return (
     <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
-      <SiSongoda currentlyPlaying={currentlyPlaying} currentlyActive={currentlyActive} activeTrack={activeTrack} />
+      <Song currentlyPlaying={currentlyPlaying} currentlyActive={currentlyActive} activeTrack={activeTrack} />
       <div className="flex-1 flex flex-col items-center justify-center">
-     {/*    <Controls
+       <Navigation
           currentlyPlaying={currentlyPlaying}
           currentlyActive={currentlyActive}
           replay={replay}
@@ -67,15 +70,15 @@ const MusicPlayer = () => {
           handlePausePlay={handlePausePlay}
           handlePrevTrack={handlePrevTrack}
           handleNextTrack={handleNextTrack}
-        />
-        <Seekbar
+        /> 
+        <SeekingBar
           value={appTime}
           min="0"
           max={duration}
           onInput={(event) => setSeekingTime(event.target.value)}
           setSeekingTime={setSeekingTime}
           appTime={appTime}
-        /> */}
+        /> 
         <PlayerTemplate
           activeTrack={activeTrack}
           volumeOption={volumeOption}
@@ -93,4 +96,4 @@ const MusicPlayer = () => {
   );
 };
 
-export default MusicPlayer;
+export default Player;

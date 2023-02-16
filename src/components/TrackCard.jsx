@@ -2,6 +2,7 @@ import { PauseandPlay, setActiveTrack } from "../redux/features/playerChoices";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PausePlay from "./PausePlay";
+import React from 'react';
 
 const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
   const dispatch = useDispatch();
@@ -16,35 +17,26 @@ const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
   };
 
   return (
-    <div   className="flex flex-col w-[200px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
-      <div class="flex justify-end px-1 pt-1">
-        <div className={`absolute inset-0 justify-start items-center bg-black bg-opacity-50 group-hover:flex ${activeTrack?.title === track.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
-        </div>
-        <div
-          className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
-            activeTrack?.title === track.title
-              ? "flex bg-black bg-opacity-60"
-              : "hidden"
-          }`}
-        >
+    <div className="flex flex-col w-[230px] p-2 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <div className="relative w-full h-45 group">
+        <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeTrack?.title === track.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <PausePlay
-            handlePause={handleClickPause}
-            handlePlay={handleClickPlay}
             currentlyPlaying={currentlyPlaying}
             activeTrack={activeTrack}
             track={track}
+            handlePause={handleClickPause}
+            handlePlay={handleClickPlay}
           />
         </div>
-        <div class="flex flex-col items-start px-1 pb-2 w-40 text-white font-semibold">
-          <img
-            alt="track_img"
-            src={track.images?.coverart}
-            className="w-full h-full rounded-lg"
-          />
-          <br></br>
-          <Link className="text-start" to={`/tracks/${track?.key}`}>
+        <img alt="track_img" src={track.images?.coverart} className="w-full h-full rounded-lg" />
+      </div>
+      <div className="mt-4 flex flex-col">
+        <p className="font-semibold text-lg text-white truncate">
+          <Link to={`/tracks/${track?.key}`}>
             {track.title}
-          </Link>{" "}
+          </Link>
+        </p>
+         
           <Link
             className="text-orange"
             to={
@@ -57,7 +49,7 @@ const TrackCard = ({ track, currentlyPlaying, activeTrack, data, i }) => {
           </Link>
         </div>
       </div>
-    </div>
+    
   );
 };
 export default TrackCard;
