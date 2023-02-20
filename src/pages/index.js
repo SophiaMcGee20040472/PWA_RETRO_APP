@@ -1,17 +1,19 @@
-import Discover from "./DiscoverMusic";
-import TopMusicians from "./TopMusicians";
-import AroundMe from "./AroundMe";
-import ArtistInfo from "./ArtistInfo";
-import SongInfo from "./SongInfo";
-import TopHits from "./TopHits";
-import Search  from "./Search";
+import Discover from './DiscoverMusic';
+import TopMusicians from './TopMusicians';
+import AroundMe from './AroundMe';
+import ArtistInfo from './ArtistInfo';
+import SongInfo from './SongInfo';
+import TopHits from './TopHits';
+import Search from './Search';
+import Login from './Login';
 
 export {
-    Discover,
-    TopMusicians,
-    TopHits,
-    AroundMe,
-    ArtistInfo,
-    SongInfo,
-    Search,
-}
+  Discover,
+  TopMusicians,
+  TopHits,
+  AroundMe,
+  ArtistInfo,
+  SongInfo,
+  Search,
+  Login,
+};

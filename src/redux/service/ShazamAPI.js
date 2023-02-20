@@ -11,8 +11,9 @@ export const ShazamAPI = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getTracksByLocation: builder.query({ query: (location) => `v1/charts/country?country_code=${location}` }),
+    getTracksByLocation: builder.query({ query: (country) => `v1/charts/country?country_code=${country}` }),
     getTopHits: builder.query({ query: () => 'v1/charts/world' }),
+    getRecognizedTracks: builder.query({ query: ({ name, trackid }) => `v1/tracks/youtube-video/${name}/${trackid}` }),
     getTrackDetails: builder.query({ query: ({ trackid }) => `v1/tracks/details?track_id=${trackid}` }),
     getTrackRelated: builder.query({ query: ({ trackid }) => `v1/tracks/related?track_id=${trackid}` }),
     getTracksByGenre: builder.query({ query: (genre) => `v1/charts/genre-world?genre_code=${genre}` }),
@@ -22,6 +23,7 @@ export const ShazamAPI = createApi({
 });
 
 export const {
+  useGetRecognizedTracksQuery,
   useGetTracksByLocationQuery,
   useGetTopHitsQuery,
   useGetTracksBySearchQuery,

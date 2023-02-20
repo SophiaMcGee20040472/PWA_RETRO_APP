@@ -7,14 +7,15 @@ import { useGetMusicianDetailsQuery } from '../redux/service/ShazamAPI';
 
 const ArtistInfo = () => {
   const { id: artistId } = useParams();
-  const { activeTrack, currentlyPlaying } = useSelector((state) => state.player);
+  const { activeTrack, isPlaying } = useSelector((state) => state.player);
   const { data: artistData, isFetching: isFetchingMusicianInfo, error } = useGetMusicianDetailsQuery(artistId);
 
   if (isFetchingMusicianInfo) return <Loader title="Loading artist details..." />;
 
   if (error) return <Error />;
 
-  console.log(artistData, artistId, "artist artist")
+  // eslint-disable-next-line no-console
+  console.log(artistData, artistId, 'artist artist');
 
   return (
     <div className="flex flex-col">
@@ -25,7 +26,7 @@ const ArtistInfo = () => {
       <RelatedHits
         data={artistData?.data[0].views['top-songs']?.data}
         artistId={artistId}
-        currentlyPlaying={currentlyPlaying}
+        isPlaying={isPlaying}
         activeTrack={activeTrack}
       />
     </div>

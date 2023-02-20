@@ -2,21 +2,37 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import PausePlay from './PausePlay';
 
-const TrackBar = ({ track, i, artistId, currentlyPlaying, activeTrack, handleClickPause, handleClickPlay }) => (
-  <div className={`w-full flex flex-row items-center from-black to bg-purple ${activeTrack?.title === track?.title ? 'bg-black' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
+const TrackBar = ({
+  track,
+  i,
+  artistId,
+  isPlaying,
+  activeTrack,
+  handleClickPause,
+  handleClickPlay,
+}) => (
+  <div
+    className={`w-full flex flex-row items-center from-black to bg-purple ${
+      activeTrack?.title === track?.title ? 'bg-black' : 'bg-transparent'
+    } py-2 p-4 rounded-lg cursor-pointer mb-2`}
+  >
     <h3 className="font-bold text-orange mr-2">{i + 1}.</h3>
     <div className="flex-1 flex flex-row justify-between items-center">
       <img
         className="w-20 h-20 rounded-lg"
-        src={artistId ? track?.attributes?.artwork?.url.replace('{w}', '500').replace('{h}', '100') : track?.images?.coverart}
+        src={
+          artistId
+            ? track?.attributes?.artwork?.url
+              .replace('{w}', '500')
+              .replace('{h}', '100')
+            : track?.images?.coverart
+        }
         alt={track?.title}
       />
       <div className="flex-1 flex flex-col justify-center mx-3">
         {!artistId ? (
           <Link to={`/tracks/${track.key}`}>
-            <p className="text-xl textbold text-orange">
-              {track?.title}
-            </p>
+            <p className="text-xl textbold text-orange">{track?.title}</p>
           </Link>
         ) : (
           <p className="text-xl text-bold text-orange">
@@ -28,17 +44,15 @@ const TrackBar = ({ track, i, artistId, currentlyPlaying, activeTrack, handleCli
         </p>
       </div>
     </div>
-    {!artistId
-      ? (
-        <PausePlay   
-          activeTrack={activeTrack}
-          track={track}
-          currentlyPlaying={currentlyPlaying}
-          handlePause={handleClickPause}
-          handlePlay={() => handleClickPlay(track, i)}
-        />
-      )
-      : null}
+    {!artistId ? (
+      <PausePlay
+        isPlaying={isPlaying}
+        activeTrack={activeTrack}
+        track={track}
+        handlePause={handleClickPause}
+        handlePlay={() => handleClickPlay(track, i)}
+      />
+    ) : null}
   </div>
 );
 

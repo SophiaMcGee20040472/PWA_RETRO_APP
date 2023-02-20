@@ -1,23 +1,22 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { Error, Loader, TrackCard } from "../components";
-import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
-import Searchbar from "../components/SearchBar";
+import { Error, Loader, TrackCard } from '../components';
+import { useGetTopHitsQuery } from '../redux/service/ShazamAPI';
+
 const TopHits = () => {
   const { data, isFetching, error } = useGetTopHitsQuery();
-  const { activeTrack, currentlyPlaying } = useSelector(
-    (state) => state.player
+  const { activeTrack, isPlaying } = useSelector(
+    (state) => state.player,
   );
 
   if (isFetching) return <Loader title="Loading Top Charts" />;
-// Error handling to make sure the app renders
+  // Error handling to make sure the app renders
   if (error) return <Error />;
 
   return (
 
     <div className="flex flex-col">
-      <Searchbar/>
       <h2 className="font-bold text-3xl text-orange text-left mt-4 mb-8">
         Discover Top Charts
       </h2>
@@ -25,7 +24,7 @@ const TopHits = () => {
         {data.map((track, i) => (
           <TrackCard
             key={track.key}
-            currentlyPlaying={currentlyPlaying}
+            isPlaying={isPlaying}
             activeTrack={activeTrack}
             data={data}
             track={track}
@@ -34,7 +33,6 @@ const TopHits = () => {
         ))}
       </div>
     </div>
-
 
   );
 };
