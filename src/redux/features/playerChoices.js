@@ -65,4 +65,5 @@ export const {
   pausePlay,
   selectGenreListId,
 } = playerChoices.actions;
+
 export default playerChoices.reducer;

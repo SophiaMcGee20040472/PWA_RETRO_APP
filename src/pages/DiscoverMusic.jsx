@@ -5,13 +5,18 @@ import { musicGenres } from '../assets/genreConstants';
 import { TrackCard, Error, Loader } from '../components';
 import { selectGenreListId } from '../redux/features/playerChoices';
 import { useGetTracksByGenreQuery } from '../redux/service/ShazamAPI';
+import Login from './Login';
 
 const DiscoverMusic = () => {
   const dispatch = useDispatch();
   const { genreListId } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTracksByGenreQuery(genreListId || 'POP');
+  const { data, isFetching, error } = useGetTracksByGenreQuery(
+    genreListId || 'POP',
+  );
   const { activeTrack, isPlaying } = useSelector((state) => state.player);
-  const GenreMenuName = musicGenres.find(({ value }) => value === genreListId)?.title;
+  const GenreMenuName = musicGenres.find(
+    ({ value }) => value === genreListId,
+  )?.title;
 
   if (isFetching) return <Loader title="Currently Loading Tracks" />;
   if (error) return <Error />;
@@ -28,7 +33,7 @@ const DiscoverMusic = () => {
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || 'pop'}
           className=" from-purple bg-black bg-gradient-to-br text-white p-3 text-l rounded-sm outline-none "
-        // eslint-disable-next-line react/jsx-no-comment-textnodes
+          // eslint-disable-next-line react/jsx-no-comment-textnodes
         >
           {musicGenres.map((musicGenres) => (
             <option key={musicGenres.value} value={musicGenres.value}>

@@ -28,5 +28,5 @@ export const links = [
   { name: 'Discover', to: '/', icon: HiHomeModern },
   { name: 'Around You', to: '/around-you', icon: RiBearSmileLine },
   { name: 'Top Artists', to: '/top-artists', icon: SiMusicbrainz },
-  { name: 'Top Charts', to: '/top-charts', icon: BsRecordCircle },
+  { name: 'Top Charts', to: '/top-hits', icon: BsRecordCircle },
 ];

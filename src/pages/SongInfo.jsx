@@ -9,7 +9,6 @@ const SongInfo = () => {
   const dispatch = useDispatch();
   const { trackid, id: artistId } = useParams();
   const { activeTrack, isPlaying } = useSelector((state) => state.player);
-
   const { data, isFetching: isFetchingRelatedHits } = useGetTrackRelatedQuery({ trackid });
   const { data: trackData, isFetching: isFetchingSongInfo } = useGetTrackDetailsQuery({ trackid });
 

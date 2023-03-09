@@ -6,9 +6,9 @@ module.exports = {
       colors: {
         black: '#191624',
         purple: '#86198f',
-        grape : '#701a75',
+        grape: '#701a75',
         stone: '#44403c',
-        orange:'#fbbf24'
+        orange: '#fbbf24',
       },
       animation: {
         slideup: 'slideup 1s ease-in-out',

@@ -3,6 +3,7 @@ import { RiBearSmileLine } from 'react-icons/ri';
 import { SiMusicbrainz } from 'react-icons/si';
 import { BsRecordCircle } from 'react-icons/bs';
 import { HiHomeModern } from 'react-icons/all';
+import { NavLink } from 'react-router-dom';
 import Logo3 from '../assets/Logo3.svg';
 
 const SideBar = () => (
@@ -23,20 +24,19 @@ const SideBar = () => (
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-orange hover:text-black"
             >
               <BsRecordCircle aria-hidden="true" className="w-6 h-6" />
-              <span className="ml-3"><a href="/Login">Login</a></span>
+              <span className="ml-3"><a href="/login">Login</a></span>
             </a>
           </li>
           <li className="my-px">
-            <a
-              href="#"
+            <NavLink
+              to="/"
               className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-orange hover:text-black"
             >
               <HiHomeModern aria-hidden="true" className="w-6 h-6 ml-1" />
-              <span className="ml-3"><a href="/">Discover</a></span>
-            </a>
+              <span className="ml-3">Discover</span>
+            </NavLink>
           </li>
           <li className="my-px" />
-
           <li className="my-px">
             <a
               href="#"
@@ -65,12 +65,19 @@ const SideBar = () => (
               <span className="ml-3"><a href="/top-charts">Top Charts</a></span>
             </a>
           </li>
-
+          <li className="my-px">
+            <NavLink
+              to="/favourites"
+              className="flex flex-row items-center h-10 px-2 rounded-lg text-gray-300  hover:bg-orange hover:text-black"
+            >
+              <RiBearSmileLine aria-hidden="true" className="w-6 h-6 ml-1" />
+              <span className="ml-3">Favourites</span>
+            </NavLink>
+          </li>
           <li className="my-px" />
         </ul>
       </div>
     </aside>
   </div>
 );
-
 export default SideBar;
