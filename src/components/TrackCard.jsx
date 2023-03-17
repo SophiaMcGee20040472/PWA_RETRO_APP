@@ -5,8 +5,9 @@ import PausePlay from './PausePlay';
 import Player from '../PlayerOptions/PlayBar';
 import { pausePlay, setActiveTrack } from '../redux/features/playerChoices';
 import AddToFavouritesButton from './AddFavouritesButton';
+import { removeFromFavourites } from '../redux/features/favouriteChoice';
 
-const TrackCard = ({ track, isPlaying, activeTrack, data, i }) => {
+const TrackCard = ({ track, isPlaying, activeTrack, data, i, showDeleteButton, onDelete }) => {
   const dispatch = useDispatch();
 
   const handleClickPause = () => {
@@ -16,6 +17,11 @@ const TrackCard = ({ track, isPlaying, activeTrack, data, i }) => {
   const handleClickPlay = () => {
     dispatch(setActiveTrack({ track, data, i }));
     dispatch(pausePlay(true));
+  };
+
+  const handleDelete = () => {
+    dispatch(removeFromFavourites(track));
+    onDelete(track);
   };
 
   return (
@@ -45,9 +51,13 @@ const TrackCard = ({ track, isPlaying, activeTrack, data, i }) => {
           </Link>
         </p>
         <br />
-        <AddToFavouritesButton track={track} />
+        <div className="flex items-center justify-between">
+          <AddToFavouritesButton track={track} />
+          {showDeleteButton && <button className="text-sm text-red-600" onClick={handleDelete}>Delete</button>}
+        </div>
       </div>
     </div>
   );
 };
+
 export default TrackCard;

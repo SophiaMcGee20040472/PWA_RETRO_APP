@@ -56,13 +56,6 @@ const Player1 = () => {
         <div className="flex items-center">
           <div className="text-orange font-bold text-bold px-9 ">{tracks[currentTrackIndex].name}</div>
           <div className="fix bottom-0 flex items-center justify-around md:w-36 lg:w-52 2xl:w-80">
-            {/* {currentTrackIndex?.length && <MdSkipPrevious size={30} color="#FFF" className="cursor-pointer" onClick={handlePrev} />}
-          {isPlaying ? (
-            <BsFillPauseFill size={45} color="#FFF" onClick={handlePause} className="cursor-pointer" />
-          ) : (
-            <BsFillPlayFill size={45} color="#FFF" onClick={handlePlay} className="cursor-pointer" />
-          )}
-          {currentTrackIndex?.length && <MdSkipNext size={30} color="#FFF" className="cursor-pointer" onClick={handleNext} />} */}
             <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePrev}><MdSkipPrevious className="w-9 h-9" /></button>
             <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePlay}><FaPlayCircle className="w-9 h-9" /></button>
             <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePause}><FaPauseCircle className="w-9 h-9" /></button>

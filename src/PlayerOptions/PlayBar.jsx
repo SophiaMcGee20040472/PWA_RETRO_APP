@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaPlay, FaPause, FaStepForward, FaStepBackward } from 'react-icons/fa';
 import '../styles.css';
 import Track1 from '../MP3s/Miley_Cyrus_Flowers.mp3';
 import Track2 from '../MP3s/RAYE_Escapism_Lyrics_ft_070_Shake.mp3';
@@ -11,6 +12,7 @@ function Playbar() {
   ]);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [audioElement, setAudioElement] = useState(new Audio(track[currentTrack].url));
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     setAudioElement(new Audio(track[currentTrack].url));
@@ -18,10 +20,12 @@ function Playbar() {
 
   const handlePlay = () => {
     audioElement.play();
+    setIsPlaying(true);
   };
 
   const handlePause = () => {
     audioElement.pause();
+    setIsPlaying(false);
   };
 
   const handleNext = () => {
@@ -30,6 +34,7 @@ function Playbar() {
     } else {
       setCurrentTrack(0);
     }
+    setIsPlaying(false);
   };
 
   const handlePrev = () => {
@@ -38,15 +43,21 @@ function Playbar() {
     } else {
       setCurrentTrack(track.length - 1);
     }
+    setIsPlaying(false);
   };
 
   return (
     <div>
       <div className="fixed bottom-0 w-full bg-gray-900 z-50 p-2 flex justify-center items-center" />
-      <button onClick={handlePrev}>Prev</button>
-      <button onClick={handlePlay}>Play</button>
-      <button onClick={handlePause}>Pause</button>
-      <button onClick={handleNext}>Next</button>
+      <button className="bg-orange hover:bg-grape text-white font-bold py-2 px-4 rounded-full mr-2" onClick={handlePrev }>
+        <FaStepBackward />
+      </button>
+      <button className="bg-orange hover:bg-grape text-white font-bold py-2 px-4 rounded-full mr-2" onClick={isPlaying ? handlePause : handlePlay}>
+        {isPlaying ? <FaPause /> : <FaPlay />}
+      </button>
+      <button className="bg-orange hover:bg-grape text-white font-bold py-2 px-4 rounded-full mr-2" onClick={handleNext}>
+        <FaStepForward />
+      </button>
     </div>
   );
 }
