@@ -6,6 +6,7 @@ import SongInfo from './SongInfo';
 import TopHits from './TopHits';
 import Search from './Search';
 import Login from './Login';
+import Signup from './Signup';
 
 export {
   Discover,
@@ -16,4 +17,5 @@ export {
   SongInfo,
   Search,
   Login,
+  Signup,
 };

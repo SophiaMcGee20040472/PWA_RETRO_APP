@@ -1,23 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React from 'react';
-import PausePlay from './PausePlay';
 import Player from '../PlayerOptions/PlayBar';
-import { pausePlay, setActiveTrack } from '../redux/features/playerChoices';
 import AddToFavouritesButton from './AddFavouritesButton';
 import { removeFromFavourites } from '../redux/features/favouriteChoice';
 
-const TrackCard = ({ track, isPlaying, activeTrack, data, i, showDeleteButton, onDelete }) => {
+const TrackCard = ({ track, activeTrack, showDeleteButton, onDelete }) => {
   const dispatch = useDispatch();
-
-  const handleClickPause = () => {
-    dispatch(pausePlay(false));
-  };
-
-  const handleClickPlay = () => {
-    dispatch(setActiveTrack({ track, data, i }));
-    dispatch(pausePlay(true));
-  };
 
   const handleDelete = () => {
     dispatch(removeFromFavourites(track));
@@ -29,13 +18,6 @@ const TrackCard = ({ track, isPlaying, activeTrack, data, i, showDeleteButton, o
       <div className="relative w-full h-56 group">
         <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeTrack?.title === track.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <Player />
-          <PausePlay
-            isPlaying={isPlaying}
-            activeTrack={activeTrack}
-            track={track}
-            handlePause={handleClickPause}
-            handlePlay={handleClickPlay}
-          />
         </div>
         <img alt="track_img" src={track.images?.coverart} className="w-full h-full rounded-lg" />
       </div>
@@ -53,7 +35,7 @@ const TrackCard = ({ track, isPlaying, activeTrack, data, i, showDeleteButton, o
         <br />
         <div className="flex items-center justify-between">
           <AddToFavouritesButton track={track} />
-          {showDeleteButton && <button className="text-sm text-red-600" onClick={handleDelete}>Delete</button>}
+          {showDeleteButton && <button className="text-sm text-red-600" onClick={handleDelete}>Delete from Favourites</button>}
         </div>
       </div>
     </div>

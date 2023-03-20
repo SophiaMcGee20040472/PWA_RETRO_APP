@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import PausePlay from './PausePlay';
+import Playbar from '../PlayerOptions/PlayBar';
 
 const TrackBar = ({
   track,
@@ -45,13 +46,7 @@ const TrackBar = ({
       </div>
     </div>
     {!artistId ? (
-      <PausePlay
-        isPlaying={isPlaying}
-        activeTrack={activeTrack}
-        track={track}
-        handlePause={handleClickPause}
-        handlePlay={() => handleClickPlay(track, i)}
-      />
+      <Playbar />
     ) : null}
   </div>
 );

@@ -19,7 +19,9 @@ const Player1 = () => {
     { name: 'Lift_Me_Up - Rihanna', url: Track5 },
   ]);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-  const [audioElement, setAudioElement] = useState(new Audio(tracks[currentTrackIndex].url));
+  const [audioElement, setAudioElement] = useState(
+    new Audio(tracks[currentTrackIndex].url),
+  );
 
   useEffect(() => {
     setAudioElement(new Audio(tracks[currentTrackIndex].url));
@@ -27,10 +29,11 @@ const Player1 = () => {
 
   const handlePlay = () => {
     audioElement.play();
+    setIsPlaying(true);
   };
-
   const handlePause = () => {
     audioElement.pause();
+    setIsPlaying(false);
   };
 
   const handleNext = () => {
@@ -54,12 +57,23 @@ const Player1 = () => {
       <div className="container mx-auto text-center " />
       <div className="bg-black rounded-lg p-4 flex items-center justify-center">
         <div className="flex items-center">
-          <div className="text-orange font-bold text-bold px-9 ">{tracks[currentTrackIndex].name}</div>
+          <div className="text-orange font-bold text-bold px-9 ">
+            {tracks[currentTrackIndex].name}
+          </div>
           <div className="fix bottom-0 flex items-center justify-around md:w-36 lg:w-52 2xl:w-80">
-            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePrev}><MdSkipPrevious className="w-9 h-9" /></button>
-            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePlay}><FaPlayCircle className="w-9 h-9" /></button>
-            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePause}><FaPauseCircle className="w-9 h-9" /></button>
-            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handleNext}><MdSkipNext className="w-9 h-9" /></button>
+            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handlePrev}>
+              <MdSkipPrevious className="w-9 h-9" />
+            </button>
+            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={isPlaying ? handlePause : handlePlay}>
+              {isPlaying ? (
+                <FaPauseCircle className="w-9 h-9" />
+              ) : (
+                <FaPlayCircle className="w-9 h-9" />
+              )}
+            </button>
+            <button className="bg-black text-white font-bold py-2 px-4 rounded" onClick={handleNext}>
+              <MdSkipNext className="w-9 h-9" />
+            </button>
           </div>
           <Volume />
         </div>

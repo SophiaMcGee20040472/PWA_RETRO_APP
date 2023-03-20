@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const Login = ({ children, isLogged }) => {
+const Signup = ({ children, isLogged }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -19,7 +19,7 @@ const Login = ({ children, isLogged }) => {
     event.preventDefault();
     console.log('Submitted!');
     setIsLoggedIn(true);
-    return <Navigate to="/discover" />;
+    return <Navigate to="/login" />;
   };
 
   if (isLoggedIn) {
@@ -32,7 +32,7 @@ const Login = ({ children, isLogged }) => {
         <div className="h-16 bg-purple" />
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <h2 className="mt-6 py-11 text-center text-3xl font-extrabold text-purple">
-            Log in
+            Sign up for your new account
           </h2>
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -83,7 +83,7 @@ const Login = ({ children, isLogged }) => {
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-orange bg-grape hover:bg-grape focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                  Login
+                  Signup
                 </button>
               </div>
             </form>
@@ -94,4 +94,4 @@ const Login = ({ children, isLogged }) => {
   );
 };
 
-export default Login;
+export default Signup;

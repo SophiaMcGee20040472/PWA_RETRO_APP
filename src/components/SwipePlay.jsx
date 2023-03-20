@@ -5,12 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper';
 
-import PausePlay from './PausePlay';
 import { pausePlay, setActiveTrack } from '../redux/features/playerChoices';
 import { useGetTopHitsQuery } from '../redux/service/ShazamAPI';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import Playbar from '../PlayerOptions/PlayBar';
 
 const TopHitsCard = ({ track, i, isPlaying, activeTrack, handleClickPause, handleClickPlay }) => (
   <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${activeTrack?.title === track?.title ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
@@ -30,13 +30,7 @@ const TopHitsCard = ({ track, i, isPlaying, activeTrack, handleClickPause, handl
         </Link>
       </div>
     </div>
-    <PausePlay
-      isPlaying={isPlaying}
-      activeTrack={activeTrack}
-      track={track}
-      handlePause={handleClickPause}
-      handlePlay={handleClickPlay}
-    />
+    <Playbar />
   </div>
 );
 
