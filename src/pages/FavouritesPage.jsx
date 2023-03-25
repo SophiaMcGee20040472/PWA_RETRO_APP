@@ -4,7 +4,7 @@ import { TrackCard } from '../components';
 
 const FavouritesPage = () => {
   const favourites = useSelector((state) => state.favourites.favourites);
-  console.log(favourites, 'HELLO');
+  console.log(favourites, 'my favourites');
 
   return (
     <div className="flex flex-col">

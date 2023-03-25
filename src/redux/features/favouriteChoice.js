@@ -13,8 +13,11 @@ export const favouriteChoice = createSlice({
     },
     removeFromFavourites: (state, action) => {
       state.favourites = state.favourites.filter(
-        (track) => track.title !== action.payload.title,
+        (fav) => fav.id !== action.payload.id,
       );
+    },
+    setFavourites: (state, action) => {
+      state.favourites = action.payload;
     },
   },
 });

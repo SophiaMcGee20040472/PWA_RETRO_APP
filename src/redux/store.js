@@ -11,5 +11,6 @@ export const store = configureStore({
     favourites: favouritesChoice,
     login: loginSlice,
   },
+  /* The middleware property is a function that specifies any additional middleware that should be applied to the store. In this case, the ShazamAPI.middleware is appended to the default middleware returned by getDefaultMiddleware(). */
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ShazamAPI.middleware),
 });

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addToFavourites,
@@ -12,15 +13,26 @@ function AddToFavouritesButton({ track }) {
     favourites.some((fav) => fav.title === track.title),
   );
 
-  const handleAddToFavourites = () => {
+  const handleAddToFavourites = async () => {
     dispatch(addToFavourites(track));
     setIsAddedToFavourites(true);
-    console.log(track.title, 'clicked');
+
+    try {
+      await axios.post('/api/favourites', { track });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleRemoveFromFavourites = () => {
+  const handleRemoveFromFavourites = async () => {
     dispatch(removeFromFavourites(track));
     setIsAddedToFavourites(false);
+
+    try {
+      await axios.delete(`/api/favourites/${track.id}`);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -34,10 +46,10 @@ function AddToFavouritesButton({ track }) {
         </button>
       ) : (
         <button
-          className="bg-grape text-white rounded-lg px-4 py-2"
+          className="bg-grape text-white rounded-lg px-2 py-2"
           onClick={handleAddToFavourites}
         >
-          Add to Favourites
+          Add Favourite
         </button>
       )}
     </div>

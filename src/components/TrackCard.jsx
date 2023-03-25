@@ -14,20 +14,20 @@ const TrackCard = ({ track, activeTrack, showDeleteButton, onDelete }) => {
   };
 
   return (
-    <div className="flex flex-col w-[250px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
-      <div className="relative w-full h-56 group">
+    <div className="flex flex-col w-[150px] p-2 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <div className="relative w-full h-36 group">
         <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeTrack?.title === track.title ? 'flex bg-black bg-opacity-70' : 'hidden'}`}>
           <Player />
         </div>
         <img alt="track_img" src={track.images?.coverart} className="w-full h-full rounded-lg" />
       </div>
-      <div className="mt-4 flex flex-col">
-        <p className="font-semibold text-lg text-white truncate">
+      <div className="mt-2 flex flex-col">
+        <p className="font-semibold text-sm text-white truncate">
           <Link to={`/tracks/${track?.key}`}>
             {track.title}
           </Link>
         </p>
-        <p className="text-sm truncate text-gray-300 mt-1">
+        <p className="text-xs truncate text-gray-300 mt-1">
           <Link to={track.artists ? `/artists/${track?.artists[0]?.adamid}` : '/top-artists'}>
             {track.subtitle}
           </Link>
@@ -35,10 +35,11 @@ const TrackCard = ({ track, activeTrack, showDeleteButton, onDelete }) => {
         <br />
         <div className="flex items-center justify-between">
           <AddToFavouritesButton track={track} />
-          {showDeleteButton && <button className="text-sm text-red-600" onClick={handleDelete}>Delete from Favourites</button>}
+          {showDeleteButton && <button className="text-xs text-red-600" onClick={handleDelete}>Delete from Favourites</button>}
         </div>
       </div>
     </div>
+
   );
 };
 

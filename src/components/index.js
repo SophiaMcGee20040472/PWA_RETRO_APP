@@ -7,7 +7,6 @@ import SideBar from './SideBar';
 import TrackBar from './TrackBar';
 import TrackCard from './TrackCard';
 import RelatedHits from './RelatedHits';
-import MusicPlayer from './MusicPlayer';
 import SwipePlay from './SwipePlay';
 
 export {
@@ -15,7 +14,6 @@ export {
   Error,
   HeaderDetails,
   Loader,
-  MusicPlayer,
   SearchBar,
   SideBar,
   TrackBar,

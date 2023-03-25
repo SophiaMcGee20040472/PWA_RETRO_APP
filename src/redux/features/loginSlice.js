@@ -27,4 +27,3 @@ const loginSlice = createSlice({
 export const { setUsername, setPassword, setIsLoggedIn, setError } = loginSlice.actions;
 
 export default loginSlice.reducer;
-

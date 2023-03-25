@@ -1,25 +1,49 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setIsLoggedIn } from '../redux/features/loginSlice';
 
-const Login = ({ children, isLogged }) => {
-  const [username, setUsername] = useState('');
+const Login = ({ children }) => {
+  const navigate = useNavigate();
+
+  const loginState = useSelector((state) => state.login);
+  const { isLoggedIn } = loginState;
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(isLogged || false);
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submitted!');
-    setIsLoggedIn(true);
-    return <Navigate to="/discover" />;
+
+    await fetch('http://laptop-bt76t6rn:4000/api/users/authenticate', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        password,
+        email,
+      }),
+    }).then((res) => {
+      const { status } = res;
+      if (status === 201) {
+        dispatch(setIsLoggedIn(true));
+        navigate('/');
+      } else {
+        dispatch(setIsLoggedIn(false));
+        navigate('/login');
+      }
+    });
   };
 
   if (isLoggedIn) {
@@ -28,11 +52,32 @@ const Login = ({ children, isLogged }) => {
 
   return (
     <div>
-      <div className="h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-white">
-        <div className="h-16 bg-purple" />
+      <div className="h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-gray">
+        <div className="h-40 w-full bg-purple flex items-start">
+          <img
+            src="src\assets\Logo3.svg"
+            alt="Purple section image"
+            className="h-36"
+          />
+          <div className="ml-auto my-auto mr-4">
+            <div
+              style={{
+                padding: '5px',
+                backgroundColor: 'violet',
+                borderRadius: '5px',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                navigate('/signup');
+              }}
+            >
+              NOT A MEMBER..SIGN UP
+            </div>
+          </div>
+        </div>
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 py-11 text-center text-3xl font-extrabold text-purple">
-            Log in
+          <h2 className=" py-4 text-center text-md font-extrabold text-purple">
+            SIGN UP FOR YOUR NEW ACCOUNT
           </h2>
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -47,13 +92,13 @@ const Login = ({ children, isLogged }) => {
                 </label>
                 <div className="mt-1">
                   <input
-                    id="username"
-                    name="username"
+                    id="email"
+                    name="email"
                     type="text"
-                    autoComplete="username"
+                    autoComplete="email"
                     required
-                    value={username}
-                    onChange={handleUsernameChange}
+                    value={email}
+                    onChange={handleEmailChange}
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   />
                 </div>

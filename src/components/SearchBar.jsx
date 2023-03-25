@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { MdManageSearch } from 'react-icons/md';
 
 const Searchbar = () => {
@@ -9,25 +8,20 @@ const Searchbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     navigate(`/search/${searchMusic}`);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      autoComplete="off"
-      className="p-2 text-white focus-within:text-white"
-    >
+    <form onSubmit={handleSubmit} autoComplete="off" className="text-white">
       <label htmlFor="search-field" className="sr-only">
         Search your Favourite Music
       </label>
-      <div className="flex flex-row justify-start items-left ml-7">
-        <MdManageSearch aria-hidden="true" className="w-8 h-10 mt-5" />
+      <div className="flex flex-row items-center">
+        <MdManageSearch aria-hidden="true" className="w-6 h-6 ml-6 mt-8" />
         <input
           name="search-field"
           id="search-field"
-          className="flex-1 bg-transparent border-none placeholder-white outline-none text-lg text-white p-2 px-3 py-7"
+          className="flex-1 bg-transparent border-none placeholder-white outline-none text-lg text-white ml-3 mt-8"
           placeholder="Search"
           type="search"
           value={searchMusic}

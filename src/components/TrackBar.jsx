@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import PausePlay from './PausePlay';
 import Playbar from '../PlayerOptions/PlayBar';
 
 const TrackBar = ({
   track,
   i,
   artistId,
-  isPlaying,
   activeTrack,
-  handleClickPause,
-  handleClickPlay,
 }) => (
   <div
     className={`w-full flex flex-row items-center from-black to bg-purple ${
