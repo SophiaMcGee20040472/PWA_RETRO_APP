@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { setIsLoggedIn } from '../redux/features/loginSlice';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addFavourites } from "../redux/features/favouriteChoice";
+import { setIsLoggedIn } from "../redux/features/loginSlice";
+import { setUserId } from "../redux/features/userSlice";
 
 const Login = ({ children }) => {
   const navigate = useNavigate();
@@ -10,8 +12,8 @@ const Login = ({ children }) => {
   const { isLoggedIn } = loginState;
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -24,11 +26,11 @@ const Login = ({ children }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await fetch('http://laptop-bt76t6rn:4000/api/users/authenticate', {
-      method: 'POST',
+    await fetch("http://laptop-bt76t6rn:4000/api/users/authenticate", {
+      method: "POST",
       headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         password,
@@ -37,11 +39,18 @@ const Login = ({ children }) => {
     }).then((res) => {
       const { status } = res;
       if (status === 201) {
+        res.json().then((response) => {
+          const {
+            user: { _id, favourites },
+          } = response;
+          dispatch(setUserId(_id));
+          dispatch(addFavourites(favourites));
+        });
         dispatch(setIsLoggedIn(true));
-        navigate('/');
+        navigate("/");
       } else {
         dispatch(setIsLoggedIn(false));
-        navigate('/login');
+        navigate("/login");
       }
     });
   };
@@ -62,13 +71,13 @@ const Login = ({ children }) => {
           <div className="ml-auto my-auto mr-4">
             <div
               style={{
-                padding: '5px',
-                backgroundColor: 'violet',
-                borderRadius: '5px',
-                cursor: 'pointer',
+                padding: "5px",
+                backgroundColor: "violet",
+                borderRadius: "5px",
+                cursor: "pointer",
               }}
               onClick={() => {
-                navigate('/signup');
+                navigate("/signup");
               }}
             >
               NOT A MEMBER..SIGN UP

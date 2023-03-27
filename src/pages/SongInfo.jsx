@@ -15,7 +15,6 @@ const SongInfo = () => {
   if (isFetchingSongInfo && isFetchingRelatedHits) return <Loader title="Searching Song details" />;
 
   // eslint-disable-next-line no-console
-  console.log(trackData);
   const handleClickPause = () => {
     dispatch(pausePlay(false));
   };
@@ -33,7 +32,7 @@ const SongInfo = () => {
       />
 
       <div className="mb-10 ml-2">
-        <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
+        <h2 className="text-white text-2xl font-bold">Lyrics:</h2>
 
         <div className="mt-1">
           {trackData?.sections[1].type === 'LYRICS'

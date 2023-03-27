@@ -8,6 +8,7 @@ import TrackBar from './TrackBar';
 import TrackCard from './TrackCard';
 import RelatedHits from './RelatedHits';
 import SwipePlay from './SwipePlay';
+import AddToFavouritesButton from './AddFavouritesButton';
 
 export {
   MusicianCard,
@@ -20,4 +21,5 @@ export {
   TrackCard,
   RelatedHits,
   SwipePlay,
+  AddToFavouritesButton,
 };

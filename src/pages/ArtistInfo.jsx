@@ -15,7 +15,6 @@ const ArtistInfo = () => {
   if (error) return <Error />;
 
   // eslint-disable-next-line no-console
-  console.log(artistData, artistId, 'artist artist');
 
   return (
     <div className="flex flex-col">

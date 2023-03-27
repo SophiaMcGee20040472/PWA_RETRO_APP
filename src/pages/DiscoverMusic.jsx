@@ -37,17 +37,16 @@ const DiscoverMusic = () => {
     K_POP: 'bg-K_POP',
   };
   // eslint-disable-next-line no-console
-  console.log(data, 'discovering pop');
   return (
     <div className={`flex flex-col ${genreToClassName[genreListId]}`}>
       <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10 ">
-        <h2 className="font-bold text-3xl text-orange text-left mt-1 mb-8 py-2 px-3 ">
+        <h2 className="font-bold text-2xl text-orange text-left mt-1 mb-1 py-0 px-3 ">
           Discover {GenreMenuName}
         </h2>
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || 'pop'}
-          className=" from-purple bg-black bg-gradient-to-br text-white p-3 text-l rounded-sm outline-none mr-7 font-semibold "
+          className=" from-purple bg-black bg-gradient-to-br text-white p-2 text-l rounded-lg outline-none mr-10 font-thin "
           // eslint-disable-next-line react/jsx-no-comment-textnodes
         >
           {musicGenres.map((musicGenres) => (

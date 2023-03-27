@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { BsBorderWidth } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = ({ children, isLogged }) => {

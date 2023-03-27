@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 const MusicianCard = ({ track }) => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-console
-  console.log(track, track.artists);
 
   return (
     <div

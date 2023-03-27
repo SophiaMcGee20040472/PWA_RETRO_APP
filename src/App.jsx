@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import { SearchBar, SideBar, SwipePlay } from './components';
-import MusicPlayer from './PlayerOptions/Player3';
-import Player1 from './PlayerOptions/Player1';
+import { useSelector } from "react-redux";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { SearchBar, SideBar, SwipePlay } from "./components";
+import MusicPlayer from "./PlayerOptions/Player3";
+import Player1 from "./PlayerOptions/Player1";
 
 import {
   ArtistInfo,
@@ -15,8 +15,8 @@ import {
   TopHits,
   Login,
   Signup,
-} from './pages';
-import FavouritesPage from './pages/FavouritesPage';
+} from "./pages";
+import FavouritesPage from "./pages/FavouritesPage";
 
 const App = () => {
   const { activeTrack } = useSelector((state) => state.player);
@@ -26,12 +26,11 @@ const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate('/');
+      navigate("/");
     } else {
-      navigate('/signup');
+      navigate("/signup");
     }
   }, [isLoggedIn]);
-  console.log('isLoggedIn', isLoggedIn);
   return (
     <>
       {!isLoggedIn && (

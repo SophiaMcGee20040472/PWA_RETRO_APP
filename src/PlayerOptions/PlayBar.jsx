@@ -37,7 +37,6 @@ function Playbar() {
 
   return (
     <div>
-      <div className="fixed bottom-0 w-full bg-gray-900 z-50 p-2 flex justify-center items-center" />
       <button
         className="bg-orange hover:bg-grape text-white font-bold py-1 px-2 rounded-full mr-2"
         onClick={isPlaying ? handlePause : handlePlay}

@@ -1,53 +1,77 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addToFavourites,
   removeFromFavourites,
-} from '../redux/features/favouriteChoice';
+} from "../redux/features/favouriteChoice";
 
 function AddToFavouritesButton({ track }) {
   const dispatch = useDispatch();
   const favourites = useSelector((state) => state.favourites.favourites);
+  const userId = useSelector((state) => state.user.userId);
+
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(
-    favourites.some((fav) => fav.title === track.title),
+    favourites.some((fav) => {
+      fav.title === track.title;
+    })
   );
 
-  const handleAddToFavourites = async () => {
-    dispatch(addToFavourites(track));
-    setIsAddedToFavourites(true);
+  useEffect(() => {
+    setIsAddedToFavourites(favourites.some((fav) => fav.title === track.title));
+  }, [favourites, track]);
 
-    try {
-      await axios.post('/api/favourites', { track });
-    } catch (error) {
-      console.error(error);
+  const handleAddToFavourites = () => {
+    if (!userId) {
+      alert("Please login to add the track to your favourites.");
+      return;
     }
+    axios
+      .post("http://laptop-bt76t6rn:4000/api/users/add-to-favourites", {
+        track,
+        userId,
+      })
+      .then((response) => {
+        dispatch(addToFavourites(response.data)); // dispatch addToFavourites action
+        setIsAddedToFavourites(true);
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleRemoveFromFavourites = async () => {
-    dispatch(removeFromFavourites(track));
-    setIsAddedToFavourites(false);
-
-    try {
-      await axios.delete(`/api/favourites/${track.id}`);
-    } catch (error) {
-      console.error(error);
-    }
+    axios
+      .post("http://laptop-bt76t6rn:4000/api/users/remove-from-favourites", {
+        trackId: track.key,
+        userId,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(removeFromFavourites(track.key)); // dispatch addToFavourites action
+        }
+      });
   };
 
   return (
     <div>
       {isAddedToFavourites ? (
         <button
-          className="bg-red-500 text-white rounded-lg  px-4 py-2"
-          onClick={handleRemoveFromFavourites}
+          className={
+            isAddedToFavourites
+              ? "bg-red-500 text-white rounded-lg px-8 py-1"
+              : "bg-grape text-white rounded-lg px-4 py-1"
+          }
+          onClick={() => {
+            isAddedToFavourites
+              ? handleRemoveFromFavourites()
+              : handleAddToFavourites();
+          }}
         >
-          Delete
+          {isAddedToFavourites ? "Remove Favourite" : "Add Favourite"}
         </button>
       ) : (
         <button
-          className="bg-grape text-white rounded-lg px-2 py-2"
-          onClick={handleAddToFavourites}
+          className="bg-grape text-white rounded-lg px-4 py-1"
+          onClick={() => handleAddToFavourites()}
         >
           Add Favourite
         </button>

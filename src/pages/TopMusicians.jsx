@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { Error, Loader, MusicianCard } from '../components';
-import { useGetTopHitsQuery } from '../redux/service/ShazamAPI';
+import { Error, Loader, MusicianCard } from "../components";
+import { useGetTopHitsQuery } from "../redux/service/ShazamAPI";
 
 const TopMusician = () => {
   const { data, isFetching, error } = useGetTopHitsQuery();
 
   // eslint-disable-next-line no-console
-  console.log(data, 'musician');
 
   if (isFetching) return <Loader title="Loading artists..." />;
 
@@ -15,7 +14,7 @@ const TopMusician = () => {
 
   return (
     <div className="flex flex-col">
-      <h2 className="font-bold text-3xl text-orange text-left mt-4 mb-8">
+      <h2 className="font-bold text-2xl text-orange text-left mt-4 mb-8">
         Top Artists
       </h2>
 

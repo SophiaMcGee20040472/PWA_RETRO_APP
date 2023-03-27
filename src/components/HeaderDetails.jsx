@@ -8,12 +8,12 @@ const HeaderDetails = ({ artistId, artistData, trackData }) => (
       <img
         alt="Photo"
         src={
-    artistId ? artistData?.attributes?.artwork?.url
-      .replace('{w}', '500')
-      .replace('{h}', '1000')
-      : trackData?.images?.coverart
-  }
-        className="sm:w-24 w-16 sm:h-24 h-16 ml-2 py-3"
+        artistId ? artistData?.attributes?.artwork?.url
+          .replace('{w}', '500')
+          .replace('{h}', '2000')
+          : trackData?.images?.coverart
+      }
+        className="sm:w-48 w-48 sm:h-52 h-56 ml-2 py-0"
       />
 
       <div className="ml-3">
@@ -21,9 +21,9 @@ const HeaderDetails = ({ artistId, artistData, trackData }) => (
           {artistId ? artistData?.attributes?.name : trackData?.title}
         </p>
         {!artistId && (
-          <Link to={`/artists/${trackData?.artists[0]?.adamid}`}>
-            <p className="text-base text-white">{trackData?.subtitle}</p>
-          </Link>
+        <Link to={`/artists/${trackData?.artists[0]?.adamid}`}>
+          <p className="text-base text-white">{trackData?.subtitle}</p>
+        </Link>
         )}
 
         <p className="text-sm font-bold text-white">
