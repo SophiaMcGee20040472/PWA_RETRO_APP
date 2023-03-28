@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'; // Importing necessary libraries
+import axios from 'axios'; // Importing Axios library
+import { useSelector } from 'react-redux'; // Importing 'useSelector' hook from Redux library
 
-import { TrackCard, Error, Loader } from '../components';
-import { useGetTracksByLocationQuery } from '../redux/service/ShazamAPI';
+import { TrackCard, Error, Loader } from '../components'; // Importing components from a 'components' folder
+import { useGetTracksByLocationQuery } from '../redux/service/ShazamAPI'; // Importing a hook function from a custom Redux API service
 
 const LocationTracks = () => {
-  const [country, setLocation] = useState('');
-  const [loading, setLoading] = useState(true);
-  const { activeTrack, isPlaying } = useSelector((state) => state.player);
-  const { data, isFetching, error } = useGetTracksByLocationQuery(country);
+  const [country, setLocation] = useState(''); // Initializing 'country' state variable as an empty string
+  const [loading, setLoading] = useState(true); // Initializing 'loading' state variable as 'true'
+  const { activeTrack, isPlaying } = useSelector((state) => state.player); // Retrieving data from the Redux store using the 'useSelector' hook
+  const { data, isFetching, error } = useGetTracksByLocationQuery(country); // Fetching data from a custom API service with the 'country' state variable as a parameter
 
-  /* Using the useEffect hook to make an HTTP request to an external API to get the user's country based on their IP address.
-Storing the retrieved country in the country state variable using the setLocation function.
-Logging any errors to the console.
-Setting the loading state variable to false. */
-  useEffect(() => {
+  useEffect(() => { // Using the 'useEffect' hook to make a GET request to an external API to get the country location of the user
     axios
       .get(
         `https://geo.ipify.org/api/v2/country?apiKey=${
@@ -25,15 +21,14 @@ Setting the loading state variable to false. */
       .then((res) => setLocation(res?.data?.location.country))
       // eslint-disable-next-line no-console
       .catch((err) => console.log(err))
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(false)); // Set 'loading' state variable to 'false' after the request is completed
   }, [country]);
-  /* Checking if isFetching and loading are both true, and if so, displaying a Loader component.
-Checking if error is not null and country is not an empty string, and if so, displaying an Error component. */
-  if (isFetching && loading) { return <Loader title="Loading Tracks around you..." />; }
 
-  if (error && country !== '') return <Error />;
-  /* Rendering a list of TrackCard components using the data state variable and passing in the required props such as key, track, isPlaying, activeTrack, and i. */
-  return (
+  if (isFetching && loading) { return <Loader title="Loading Tracks around you..." />; } // If both 'isFetching' and 'loading' are 'true', display a loader component
+
+  if (error && country !== '') return <Error />; // If there is an error in the API call and 'country' state variable is not empty, display an error component
+
+  return ( // Display a list of tracks based on the 'data' state variable
     <div className="flex flex-col">
       <h2 className="font-bold text-2xl text-orange text-left mt-4 mb-10">
         Around you <span className="font-semibold">{country}</span>
@@ -55,4 +50,4 @@ Checking if error is not null and country is not an empty string, and if so, dis
   );
 };
 
-export default LocationTracks;
+export default LocationTracks; // Exporting 'LocationTracks' component for use in other files

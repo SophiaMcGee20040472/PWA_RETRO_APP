@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { MdManageSearch } from 'react-icons/md';
 
 const Searchbar = () => {
+  // Hook to navigate to search results page
   const navigate = useNavigate();
+
+  // State hook to manage the search input
   const [searchMusic, setSearchMusic] = useState('');
 
+  // Function to handle form submit event
   const handleSubmit = (e) => {
-    e.preventDefault();
-    navigate(`/search/${searchMusic}`);
+    e.preventDefault(); // prevent default form submission
+    navigate(`/search/${searchMusic}`); // navigate to search results page with the search input as a parameter
   };
 
   return (
@@ -17,7 +21,9 @@ const Searchbar = () => {
         Search your Favourite Music
       </label>
       <div className="flex flex-row items-center">
+        {/* Search icon */}
         <MdManageSearch aria-hidden="true" className="w-6 h-6 ml-6 mt-8 mb-4" />
+        {/* Search input field */}
         <input
           name="search-field"
           id="search-field"
@@ -25,7 +31,7 @@ const Searchbar = () => {
           placeholder="Search"
           type="search"
           value={searchMusic}
-          onChange={(e) => setSearchMusic(e.target.value)}
+          onChange={(e) => setSearchMusic(e.target.value)} // Update searchMusic state with input value
         />
       </div>
     </form>

@@ -1,10 +1,14 @@
+// Import the useNavigate hook from the react-router-dom library
 import { useNavigate } from 'react-router-dom';
 
+// Define a MusicianCard component that takes a 'track' prop
 const MusicianCard = ({ track }) => {
+  // Initialize the navigate function using the useNavigate hook
   const navigate = useNavigate();
-  // eslint-disable-next-line no-console
 
+  // Render the component
   return (
+    // Render a div with a background image and a click handler that navigates to a new route
     <div
       className="flex flex-col w-[150px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer"
       onClick={() => navigate(`/artists/${track?.artists[0].adamid}`)}
@@ -21,5 +25,5 @@ const MusicianCard = ({ track }) => {
   );
 };
 
+// Export the MusicianCard component as the default export of the module
 export default MusicianCard;
-

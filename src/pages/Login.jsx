@@ -1,36 +1,43 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { addFavourites } from "../redux/features/favouriteChoice";
-import { setIsLoggedIn } from "../redux/features/loginSlice";
-import { setUserId } from "../redux/features/userSlice";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addFavourites } from '../redux/features/favouriteChoice';
+import { setIsLoggedIn } from '../redux/features/loginSlice';
+import { setUserId } from '../redux/features/userSlice';
 
 const Login = ({ children }) => {
+  // Declare a navigate function for routing
   const navigate = useNavigate();
 
+  // Get the isLoggedIn state from the loginSlice of the redux store
   const loginState = useSelector((state) => state.login);
   const { isLoggedIn } = loginState;
+
+  // Declare dispatch to dispatch redux actions
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // Declare state variables for email and password fields
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  // Handle changes to email and password fields
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await fetch("http://laptop-bt76t6rn:4000/api/users/authenticate", {
-      method: "POST",
+    // Send a POST request to the server to authenticate user
+    await fetch('http://laptop-bt76t6rn:4000/api/users/authenticate', {
+      method: 'POST',
       headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         password,
@@ -38,6 +45,8 @@ const Login = ({ children }) => {
       }),
     }).then((res) => {
       const { status } = res;
+
+      // If authentication succeeds, update the redux store with the user's id and favourite choices
       if (status === 201) {
         res.json().then((response) => {
           const {
@@ -46,19 +55,23 @@ const Login = ({ children }) => {
           dispatch(setUserId(_id));
           dispatch(addFavourites(favourites));
         });
+        // Update isLoggedIn state and navigate to home page
         dispatch(setIsLoggedIn(true));
-        navigate("/");
+        navigate('/');
       } else {
+        // If authentication fails, update isLoggedIn state and navigate to login page
         dispatch(setIsLoggedIn(false));
-        navigate("/login");
+        navigate('/login');
       }
     });
   };
 
+  // Render the children components if the user is logged in
   if (isLoggedIn) {
-    return children; // Render the children components when logged in
+    return children;
   }
 
+  // Otherwise, render the login form
   return (
     <div>
       <div className="h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-gray">
@@ -71,13 +84,13 @@ const Login = ({ children }) => {
           <div className="ml-auto my-auto mr-4">
             <div
               style={{
-                padding: "5px",
-                backgroundColor: "violet",
-                borderRadius: "5px",
-                cursor: "pointer",
+                padding: '5px',
+                backgroundColor: 'violet',
+                borderRadius: '5px',
+                cursor: 'pointer',
               }}
               onClick={() => {
-                navigate("/signup");
+                navigate('/signup');
               }}
             >
               NOT A MEMBER..SIGN UP

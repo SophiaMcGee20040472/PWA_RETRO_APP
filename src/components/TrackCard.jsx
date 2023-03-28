@@ -11,8 +11,6 @@ const TrackCard = ({
   showDeleteButton,
   onDelete,
   userId,
-  isFavourite,
-  onRemoveFromFavourites,
 }) => {
   const dispatch = useDispatch();
 

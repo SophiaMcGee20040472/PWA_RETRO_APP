@@ -1,14 +1,20 @@
+// Import necessary libraries
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Define a functional component named Signup
 const Signup = ({ children, isLogged }) => {
+// Use the useNavigate hook from react-router-dom to navigate to different routes
   const navigate = useNavigate();
 
+  // Define states for email, password, first name, last name, and whether the user is logged in or not
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setfirstName] = useState('');
   const [lastName, setlastName] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(isLogged || false);
 
+  // Define functions to handle changes in email, password, first name, and last name input fields
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -25,11 +31,11 @@ const Signup = ({ children, isLogged }) => {
     setlastName(event.target.value);
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(isLogged || false);
-
+  // Define a function to handle submission of the signup form
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Send a POST request to the server with the user's information
     await fetch('http://LAPTOP-BT76T6RN:4000/api/users', {
       method: 'POST',
       headers: {
@@ -41,21 +47,27 @@ const Signup = ({ children, isLogged }) => {
         lastName,
         password,
         email,
-        favourites: '',
       }),
     }).then((res) => {
       const { status } = res;
+
+      // If the server responds with a status code of 201 (created), navigate to the login page
       if (status === 201) {
         navigate('/login');
+
+      // If the server responds with any other status code, stay on the signup page
       } else {
         navigate('/signup');
       }
     });
   };
 
+  // If the user is already logged in, render the children components
   if (isLoggedIn) {
-    return children; // Render the children components when logged in
+    return children;
   }
+
+  // Otherwise, render the signup form
 
   return (
     <div>
@@ -171,7 +183,6 @@ const Signup = ({ children, isLogged }) => {
                 </div>
               </div>
               <div>
-
                 <button
                   type="submit"
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-bold text-orange bg-grape hover:bg-grape focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"

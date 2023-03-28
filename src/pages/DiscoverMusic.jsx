@@ -1,25 +1,27 @@
-/* eslint-disable no-shadow */
+/* eslint-disable no-shadow */ // Disable the "no-shadow" eslint rule for this file
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { musicGenres } from '../assets/genreConstants';
-import { TrackCard, Error, Loader } from '../components';
-import { selectGenreListId } from '../redux/features/playerChoices';
-import { useGetTracksByGenreQuery } from '../redux/service/ShazamAPI';
-import '../assets/genre.css';
+import { useDispatch, useSelector } from 'react-redux'; // Importing hooks from react-redux for dispatching actions and selecting parts of the state
+import { musicGenres } from '../assets/genreConstants'; // Importing an array of music genres
+import { TrackCard, Error, Loader } from '../components'; // Importing custom components
+import { selectGenreListId } from '../redux/features/playerChoices'; // Importing a redux action creator
+import { useGetTracksByGenreQuery } from '../redux/service/ShazamAPI'; // Importing a custom hook for fetching data from the Shazam API
+import '../assets/genre.css'; // Importing a CSS file
 
 const DiscoverMusic = () => {
-  const dispatch = useDispatch();
-  const { genreListId } = useSelector((state) => state.player);
+  const dispatch = useDispatch(); // Initializing the dispatch function
+  const { genreListId } = useSelector((state) => state.player); // Selecting the genreListId from the redux state
   const { data, isFetching, error } = useGetTracksByGenreQuery(
-    genreListId || 'POP',
+    genreListId || 'POP', // Fetching the tracks of the selected genre or 'POP' by default
   );
-  const { activeTrack, isPlaying } = useSelector((state) => state.player);
+  const { activeTrack, isPlaying } = useSelector((state) => state.player); // Selecting the activeTrack and isPlaying values from the redux state
   const GenreMenuName = musicGenres.find(
-    ({ value }) => value === genreListId,
+    ({ value }) => value === genreListId, // Finding the genre title by matching its value with the selected genreListId
   )?.title;
 
-  if (isFetching) return <Loader title="Currently Loading Tracks" />;
-  if (error) return <Error />;
+  if (isFetching) return <Loader title="Currently Loading Tracks" />; // Render a loader while the tracks are being fetched
+  if (error) return <Error />; // Render an error message if there's an error in fetching the tracks
+
+  // Mapping each genre to its corresponding CSS class
   const genreToClassName = {
     POP: 'bg-POP',
     ALTERNATIVE: 'bg-ALTERNATIVE',
@@ -37,18 +39,21 @@ const DiscoverMusic = () => {
     K_POP: 'bg-K_POP',
   };
   // eslint-disable-next-line no-console
+  // Return the JSX for rendering the component
   return (
-    <div className={`flex flex-col ${genreToClassName[genreListId]}`}>
+    <div className={`flex flex-col px-4 ${genreToClassName[genreListId]}`}>
+      {/* Render the genre title and genre selector */}
       <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10 ">
-        <h2 className="font-bold text-2xl text-orange text-left mt-1 mb-1 py-0 px-3 ">
+        <h2 className="font-bold text-2xl text-orange text-left mt-1">
           Discover {GenreMenuName}
         </h2>
         <select
           onChange={(e) => dispatch(selectGenreListId(e.target.value))}
           value={genreListId || 'pop'}
-          className=" from-purple bg-black bg-gradient-to-br text-white p-2 text-l rounded-lg outline-none mr-10 font-thin "
-          // eslint-disable-next-line react/jsx-no-comment-textnodes
+          className=" from-purple bg-black bg-gradient-to-br text-white p-2 text-l rounded-lg outline-black mr-5 font-thin "
+          // Disable a lint warning for this line
         >
+          {/* Render each genre option */}
           {musicGenres.map((musicGenres) => (
             <option key={musicGenres.value} value={musicGenres.value}>
               {musicGenres.title}
@@ -56,6 +61,8 @@ const DiscoverMusic = () => {
           ))}
         </select>
       </div>
+
+      {/* Render each TrackCard component based on data */}
       <div className="flex flex-wrap sm:justify-start justify-center gap-5 px-1">
         {data?.map((track, i) => (
           <TrackCard

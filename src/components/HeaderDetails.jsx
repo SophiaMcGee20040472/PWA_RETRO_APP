@@ -12,7 +12,7 @@ const HeaderDetails = ({ artistId, artistData, trackData }) => (
           .replace('{w}', '500')
           .replace('{h}', '2000')
           : trackData?.images?.coverart
-      }
+      } // Conditionally render the correct image source depending on whether the component is displaying an artist or a track
         className="sm:w-48 w-48 sm:h-52 h-56 ml-2 py-0"
       />
 
@@ -25,7 +25,6 @@ const HeaderDetails = ({ artistId, artistData, trackData }) => (
           <p className="text-base text-white">{trackData?.subtitle}</p>
         </Link>
         )}
-
         <p className="text-sm font-bold text-white">
           {artistId
             ? artistData?.attributes?.genreNames[0]
