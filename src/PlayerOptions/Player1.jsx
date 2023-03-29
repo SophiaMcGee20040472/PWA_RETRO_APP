@@ -55,7 +55,7 @@ const Player1 = () => {
   return (
     <footer className="fixed bottom-0 bg-black px-20 py-3 transition">
       <div className="container mx-auto text-center" />
-      <div className="bg-black rounded-lg  flex items-left justify-center mr-20">
+      <div className="bg-black rounded-lg  flex items-left justify-center mr-32">
         <div className="flex items-center px-6 ml-7">
           <div className="text-orange font-bold text-bold px-7 ml-4">{tracks[currentTrackIndex].name}</div>
           <div className="fix bottom-0 flex items-center justify-around md:w-36 lg:w-52 2xl:w-80">
