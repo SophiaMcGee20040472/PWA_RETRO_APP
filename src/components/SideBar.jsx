@@ -91,7 +91,7 @@ const SideBar = () => (
               <span className="ml-3">Favourites</span>
             </NavLink>
           </li>
-          <li className="my-px mt-36">
+          <li className="my-px mt-32">
             <NavLink
               to=""
               className="flex flex-row items-center h-8 px-2 rounded-lg text-sm text-gray-300  hover:bg-orange hover:text-black"
