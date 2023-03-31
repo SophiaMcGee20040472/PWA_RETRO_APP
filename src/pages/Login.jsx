@@ -33,7 +33,7 @@ const Login = ({ children }) => {
     event.preventDefault();
 
     // Send a POST request to the server to authenticate user
-    await fetch('http://laptop-bt76t6rn:4000/api/users/authenticate', {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/authenticate`, {
       method: 'POST',
       headers: {
         Accept: 'application/json, text/plain, */*',

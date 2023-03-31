@@ -1,17 +1,17 @@
 // Import necessary libraries
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Define a functional component named Signup
 const Signup = ({ children, isLogged }) => {
-// Use the useNavigate hook from react-router-dom to navigate to different routes
+  // Use the useNavigate hook from react-router-dom to navigate to different routes
   const navigate = useNavigate();
 
   // Define states for email, password, first name, last name, and whether the user is logged in or not
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setfirstName] = useState('');
-  const [lastName, setlastName] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(isLogged || false);
 
   // Define functions to handle changes in email, password, first name, and last name input fields
@@ -34,13 +34,13 @@ const Signup = ({ children, isLogged }) => {
   // Define a function to handle submission of the signup form
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(import.meta.env);
     // Send a POST request to the server with the user's information
-    await fetch('http://LAPTOP-BT76T6RN:4000/api/users', {
-      method: 'POST',
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users`, {
+      method: "POST",
       headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         firstName,
@@ -53,11 +53,11 @@ const Signup = ({ children, isLogged }) => {
 
       // If the server responds with a status code of 201 (created), navigate to the login page
       if (status === 201) {
-        navigate('/login');
+        navigate("/login");
 
-      // If the server responds with any other status code, stay on the signup page
+        // If the server responds with any other status code, stay on the signup page
       } else {
-        navigate('/signup');
+        navigate("/signup");
       }
     });
   };
@@ -81,13 +81,13 @@ const Signup = ({ children, isLogged }) => {
           <div className="ml-auto my-auto mr-4">
             <div
               style={{
-                padding: '5px',
-                backgroundColor: 'violet',
-                borderRadius: '5px',
-                cursor: 'pointer',
+                padding: "5px",
+                backgroundColor: "violet",
+                borderRadius: "5px",
+                cursor: "pointer",
               }}
               onClick={() => {
-                navigate('/login');
+                navigate("/login");
               }}
             >
               ALREADY A MEMBER...LOGIN

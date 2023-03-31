@@ -6,11 +6,12 @@ import {
   removeFromFavourites,
 } from '../redux/features/favouriteChoice'; // Import Redux actions
 
-function AddToFavouritesButton({ track }) { // Define component
+function AddToFavouritesButton({ track }) {
+  // Define component
   const dispatch = useDispatch(); // Retrieve Redux store dispatch function
   const favourites = useSelector((state) => state.favourites.favourites); // Retrieve user's favourites from Redux store
   const userId = useSelector((state) => state.user.userId); // Retrieve user ID from Redux store
-
+  console.log('favourites', favourites);
   // Check if the current track is already added to favourites
   const [isAddedToFavourites, setIsAddedToFavourites] = useState(
     favourites.some((fav) => {
@@ -30,10 +31,13 @@ function AddToFavouritesButton({ track }) { // Define component
       return;
     }
     axios
-      .post('http://laptop-bt76t6rn:4000/api/users/add-to-favourites', {
-        track,
-        userId,
-      })
+      .post(
+        `${import.meta.VITE_BACKEND_URL}/api/users/add-to-favourites`,
+        {
+          track,
+          userId,
+        },
+      )
       .then((response) => {
         dispatch(addToFavourites(response.data)); // Dispatch addToFavourites action with response data
         setIsAddedToFavourites(true); // Update isAddedToFavourites state
@@ -44,10 +48,15 @@ function AddToFavouritesButton({ track }) { // Define component
   // Handle removing track from favourites
   const handleRemoveFromFavourites = async () => {
     axios
-      .post('http://laptop-bt76t6rn:4000/api/users/remove-from-favourites', {
-        trackId: track.key,
-        userId,
-      })
+      .post(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/users/remove-from-favourites`,
+        {
+          trackId: track.key,
+          userId,
+        },
+      )
       .then((response) => {
         if (response.status === 200) {
           dispatch(removeFromFavourites(track.key)); // Dispatch removeFromFavourites action with track key
