@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { addFavourites } from '../redux/features/favouriteChoice';
 import { setIsLoggedIn } from '../redux/features/loginSlice';
 import { setUserId } from '../redux/features/userSlice';
+import Logo3 from '../assets/Logo3.svg';
 
 const Login = ({ children }) => {
   // Declare a navigate function for routing
@@ -77,7 +78,7 @@ const Login = ({ children }) => {
       <div className="h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-gray">
         <div className="h-40 w-full bg-purple flex items-start">
           <img
-            src="src\assets\Logo3.svg"
+            src={Logo3}
             alt="Purple section image"
             className="h-36"
           />

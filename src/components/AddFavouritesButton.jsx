@@ -32,7 +32,7 @@ function AddToFavouritesButton({ track }) {
     }
     axios
       .post(
-        `${import.meta.VITE_BACKEND_URL}/api/users/add-to-favourites`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/users/add-to-favourites`,
         {
           track,
           userId,

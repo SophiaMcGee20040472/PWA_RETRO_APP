@@ -1,6 +1,7 @@
 // Import necessary libraries
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo3 from "../assets/Logo3.svg"
 
 // Define a functional component named Signup
 const Signup = ({ children, isLogged }) => {
@@ -74,7 +75,7 @@ const Signup = ({ children, isLogged }) => {
       <div className="h-screen bg-cover bg-center bg-no-repeat bg-fixed bg-gray">
         <div className="h-40 w-full bg-purple flex items-start">
           <img
-            src="src\assets\Logo3.svg"
+            src={Logo3}
             alt="Purple section image"
             className="h-36"
           />
